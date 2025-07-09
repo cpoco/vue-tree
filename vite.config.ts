@@ -3,7 +3,7 @@ import path from "node:path"
 import vue from "@vitejs/plugin-vue"
 import * as vite from "vite"
 
-export default vite.defineConfig((config) => {
+export default vite.defineConfig(() => {
 	return {
 		root: path.join(import.meta.dirname, "src"),
 		base: "./",
@@ -12,7 +12,7 @@ export default vite.defineConfig((config) => {
 		publicDir: path.join(import.meta.dirname, "public"),
 
 		build: {
-			outDir: path.join(import.meta.dirname, "build", config.mode),
+			outDir: path.join(import.meta.dirname, "docs"),
 			emptyOutDir: true,
 
 			assetsDir: "",
