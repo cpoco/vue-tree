@@ -36,9 +36,6 @@ export default vue.defineComponent({
 				if (props.node.dd.over === Over.Next) classes.push("over-next")
 				if (props.node.dd.over === Over.Nest) classes.push("over-nest")
 				if (props.node.dd.dragging) classes.push("dragging")
-				if (props.node.dd.prev) classes.push("drop-prev")
-				if (props.node.dd.next) classes.push("drop-next")
-				if (props.node.dd.nest) classes.push("drop-nest")
 
 				return classes
 			}),
@@ -85,8 +82,6 @@ div.node(
 	@drop="drop"
 )
 	div.node-back
-		div.node-back-prev
-		div.node-back-next
 		div.node-back-marker
 
 	div.node-main
@@ -154,21 +149,6 @@ div.node(
 		height: 100%
 		overflow-clip-margin: 1px
 
-		.drop-prev &-prev
-			position: absolute
-			background-color: @css { hsla(calc(var(--depth) * 20), 100%, 50%, 0.2) }
-			inset: s("0 0 50% calc((var(--depth) + 1) * %s)", _node_size)
-
-		.drop-next &-next
-			position: absolute
-			background-color: @css { hsla(calc(var(--depth) * 20), 100%, 50%, 0.2) }
-			inset: s("50% 0 0 calc((var(--depth) + 1) * %s)", _node_size)
-
-		.drop-nest &-next
-			position: absolute
-			background-color: @css { hsla(calc((var(--depth) + 1) * 20), 100%, 50%, 0.2) }
-			inset: s("50% 0 0 calc((var(--depth) + 2) * %s)", _node_size)
-
 		.over-prev &-marker
 			position: absolute
 			height: 2px
@@ -201,6 +181,7 @@ div.node(
 			font-family: bootstrap-icons
 			grid-area: 1 / 2
 			place-self: center center
+			cursor: pointer
 
 		&-item
 			color: hsla(_node_hue, 100%, 40%, 1)
@@ -213,6 +194,7 @@ div.node(
 			font-family: bootstrap-icons
 			grid-area: 1 / 4
 			place-self: center center
+			cursor: pointer
 
 		&-name
 			overflow: hidden
